@@ -1,0 +1,5 @@
+mangahub-cli
+mangahub-cli.exe
+data.db
+logs/
+.env
