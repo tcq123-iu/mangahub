@@ -1,0 +1,18 @@
+package models
+
+type Manga struct {
+	ID            string `json:"id"`
+	Title         string `json:"title"`
+	Author        string `json:"author"`
+	Genres        string `json:"genres"` // Stored as a string in SQLite
+	Status        string `json:"status"`
+	TotalChapters int    `json:"total_chapters"`
+	Description   string `json:"description"`
+}
+
+type UserProgress struct {
+	UserID         string `json:"user_id"`
+	MangaID        string `json:"manga_id"`
+	CurrentChapter int    `json:"current_chapter"`
+	Status         string `json:"status"` // e.g., "Reading", "Completed"
+}
