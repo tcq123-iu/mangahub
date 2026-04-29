@@ -38,6 +38,7 @@ func main() {
 		api.POST("/library", user.AddToLibrary(db))
 		api.GET("/library", user.GetLibrary(db))
 		api.PATCH("/library/progress", user.UpdateProgress(db))
+		api.DELETE("/library", user.RemoveFromLibrary(db))
 	}
 
 	// 5. Start the Server 
