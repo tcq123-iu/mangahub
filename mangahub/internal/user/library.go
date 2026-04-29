@@ -4,6 +4,9 @@ import (
 	"database/sql"
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"fmt"
+	"log"
+	"net"
 )
 
 func AddToLibrary(db *sql.DB) gin.HandlerFunc {
@@ -97,6 +100,18 @@ func UpdateProgress(db *sql.DB) gin.HandlerFunc {
 	}
 }
 // internal/user/library.go
+func notifyTCP(mangaID string, chapter int) {
+	conn, err := net.Dial("tcp", "localhost:8081")
+	if err != nil {
+		log.Printf("TCP Sync Server unreachable: %v", err)
+		return
+	}
+	defer conn.Close()
+
+	// Design: Simple JSON protocol
+	msg := fmt.Sprintf(`{"type": "PROGRESS_UPDATE", "manga_id": "%s", "chapter": %d}`, mangaID, chapter)
+	fmt.Fprintln(conn, msg)
+}
 
 func RemoveFromLibrary(db *sql.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {

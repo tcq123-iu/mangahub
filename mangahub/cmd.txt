@@ -1,1 +1,2 @@
 go run cmd/api-server/server.go
+go run cmd/tcp-server/server.go

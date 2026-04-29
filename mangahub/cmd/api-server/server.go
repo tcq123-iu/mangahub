@@ -39,6 +39,8 @@ func main() {
 		api.GET("/library", user.GetLibrary(db))
 		api.PATCH("/library/progress", user.UpdateProgress(db))
 		api.DELETE("/library", user.RemoveFromLibrary(db))
+		router.GET("/manga/search", manga.SearchManga(db))
+        router.POST("/manga/sync", manga.SyncMangaDx(db))
 	}
 
 	// 5. Start the Server 
