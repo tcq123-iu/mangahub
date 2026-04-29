@@ -15,3 +15,15 @@ type RegisterRequest struct {
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password" binding:"required,min=8"`
 }
+// pkg/models/user.go
+
+type LoginRequest struct {
+	Identifier string `json:"identifier" binding:"required"` // Can be username or email
+	Password   string `json:"password" binding:"required"`
+}
+
+type LoginResponse struct {
+	Token     string `json:"token"`
+	ExpiresAt string `json:"expires_at"`
+	Username  string `json:"username"`
+}

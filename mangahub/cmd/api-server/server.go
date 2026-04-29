@@ -21,6 +21,8 @@ func main() {
 	authGroup := router.Group("/auth")
 	{
 		authGroup.POST("/register", auth.Register(db))
+        authGroup.POST("/login", auth.Login(db))
+
 	}
 
 	log.Println("API Server running on :8080")
